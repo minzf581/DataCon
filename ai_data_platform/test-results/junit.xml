@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="6" failures="0" skipped="0" tests="6" time="0.305" timestamp="2025-01-31T03:57:49.315622+00:00" hostname="minzhenfadeMacBook-Air.local"><testcase classname="" name="ai_data_platform.dc_analysis.tests" time="0.000"><error message="collection failure">import file mismatch:
+imported module 'dc_analysis.tests' has this __file__ attribute:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_analysis/tests
+which is not the same as the test file we want to collect:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_analysis/tests.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules</error></testcase><testcase classname="" name="ai_data_platform.dc_collector.tests" time="0.000"><error message="collection failure">import file mismatch:
+imported module 'dc_collector.tests' has this __file__ attribute:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_collector/tests
+which is not the same as the test file we want to collect:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_collector/tests.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules</error></testcase><testcase classname="" name="ai_data_platform.dc_core.tests" time="0.000"><error message="collection failure">import file mismatch:
+imported module 'dc_core.tests' has this __file__ attribute:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_core/tests
+which is not the same as the test file we want to collect:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_core/tests.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules</error></testcase><testcase classname="" name="ai_data_platform.dc_feedback.tests" time="0.000"><error message="collection failure">import file mismatch:
+imported module 'dc_feedback.tests' has this __file__ attribute:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_feedback/tests
+which is not the same as the test file we want to collect:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_feedback/tests.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules</error></testcase><testcase classname="" name="ai_data_platform.dc_reporting.tests" time="0.000"><error message="collection failure">import file mismatch:
+imported module 'dc_reporting.tests' has this __file__ attribute:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_reporting/tests
+which is not the same as the test file we want to collect:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_reporting/tests.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules</error></testcase><testcase classname="" name="ai_data_platform.dc_validation.tests" time="0.000"><error message="collection failure">import file mismatch:
+imported module 'dc_validation.tests' has this __file__ attribute:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_validation/tests
+which is not the same as the test file we want to collect:
+  /Users/lewis_1/source code/dataconcierge/ai_data_platform/dc_validation/tests.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules</error></testcase></testsuite></testsuites>

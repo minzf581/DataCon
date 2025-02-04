@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="task-monitor">
+    <!-- 活动任务 -->
+    <div class="active-tasks">
+        <h2>正在进行的任务</h2>
+        <div class="task-list">
+            {% for task in active_tasks %}
+            <div class="task-card">
+                <div class="task-header">
+                    <h3>{{ task.get_type_display }}</h3>
+                    <span class="status {{ task.status|lower }}">
+                        {{ task.get_status_display }}
+                    </span>
+                </div>
+                <div class="task-details">
+                    <p>项目: {{ task.project.name }}</p>
+                    <p>输入数据集: {{ task.input_dataset.name }}</p>
+                    {% if task.output_dataset %}
+                    <p>输出数据集: {{ task.output_dataset.name }}</p>
+                    {% endif %}
+                </div>
+                <div class="task-progress">
+                    <div class="progress-bar" style="width: {{ task.progress }}%"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- 历史任务 -->
+    <div class="task-history">
+        <h2>历史任务</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>任务类型</th>
+                    <th>状态</th>
+                    <th>项目</th>
+                    <th>开始时间</th>
+                    <th>完成时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.get_type_display }}</td>
+                    <td>{{ task.get_status_display }}</td>
+                    <td>{{ task.project.name }}</td>
+                    <td>{{ task.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>{{ task.updated_at|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        <a href="{% url 'task_detail' task.id %}">查看详情</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %} 
