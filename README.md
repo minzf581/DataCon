@@ -2,11 +2,11 @@
 
 Data Concierge is an advanced AI-powered data management platform that simplifies the process of collecting, validating, and analyzing data from various sources. It combines modern authentication, robust data handling, and intelligent analysis capabilities to provide a comprehensive solution for data management needs.
 
-## Introduction
+## Overview
 
 Data Concierge serves as your intelligent assistant for data operations, offering a comprehensive suite of tools for data collection, quality management, and analysis. The platform leverages artificial intelligence to automate and enhance various aspects of data handling, making it an ideal solution for businesses and organizations dealing with diverse data sources.
 
-### Key Capabilities
+## Key Features
 
 1. **Intelligent Data Collection**
    - Automatically collect data from multiple sources including REST APIs, databases, and web services
@@ -31,291 +31,134 @@ Data Concierge serves as your intelligent assistant for data operations, offerin
    - API versioning and documentation
    - Comprehensive security measures
 
-### Getting Started
+### 4. Scalable Architecture
+- Modular Django application structure
+- Celery for background task processing
+- Redis for caching and task queues
+- PostgreSQL/SQLite database support
 
-1. **Initial Setup**
-   - Follow the installation steps below to set up your environment
-   - Create an admin account using the superuser command
-   - Configure your environment variables
+### 5. API Features
+- RESTful API design
+- Comprehensive API documentation
+- Rate limiting and throttling
+- Flexible data formats (JSON, CSV)
 
-2. **Basic Usage**
-   - Start the required services (Redis, Celery, Django)
-   - Generate an authentication token
-   - Use the API endpoints to interact with the system
-   - Monitor operations through the dashboard
+## Technical Stack
 
-3. **Advanced Features**
-   - Configure data collection jobs
-   - Set up quality validation rules
-   - Define analysis parameters
-   - Manage access permissions
-
-4. **Integration**
-   - Use the REST API for system integration
-   - Implement webhooks for real-time updates
-   - Configure automated workflows
-   - Set up monitoring and alerts
-
-## System Overview
-
-The platform offers a seamless experience for:
-- Collecting data from multiple sources (APIs, databases, web scraping)
-- Ensuring data quality through automated validation
-- Analyzing data using AI-powered tools
-- Managing data access with secure authentication
-- Monitoring data processing with real-time tracking
-
-### Quick Start Guide
-
-1. **Setup**: Install and configure the platform using the installation guide below
-2. **Authentication**: Generate an API token for secure access
-3. **Data Collection**: Use the API endpoints to collect data from your sources
-4. **Analysis**: Process and analyze your data using the platform's AI capabilities
-5. **Monitor**: Track progress and results through the dashboard
-
-For detailed usage examples and API documentation, visit `/api/docs/` after starting the server.
-
-## Features
-
-### 1. Data Collection
-- **Multi-source Data Collection**
-  - REST API Integration
-  - Database Connections (MySQL, PostgreSQL, MongoDB, SQLite)
-  - Web Scraping
-  - Real-time Data Streaming (WebSocket)
-  
-- **Collection Features**
-  - Rate Limiting
-  - Error Handling & Retries
-  - Async/Sync Collection
-  - Progress Tracking
-  - Data Validation
-
-### 2. Data Quality Management
-- **Schema Validation**
-  - Field Type Checking
-  - Required Field Validation
-  - Format Validation
-
-- **Quality Metrics**
-  - Completeness Score
-  - Consistency Score
-  - Accuracy Score
-  - Overall Quality Score
-
-- **Data Validation**
-  - Anomaly Detection
-  - Range Checking
-  - Format Verification
-  - Privacy Compliance
-
-### 3. AI Enhancement
-- **Requirement Analysis**
-  - Natural Language Processing
-  - Requirement Structure Generation
-  - Complexity Assessment
-  - Time Estimation
-
-- **Data Source Recommendation**
-  - Source Matching
-  - Availability Checking
-  - Quality Assessment
-  - Cost Estimation
-
-- **Data Analysis**
-  - Feature Extraction
-  - Statistical Analysis
-  - Correlation Analysis
-  - Distribution Analysis
-  - Anomaly Detection
-
-### 4. API & Authentication
-- **Token-based Authentication**
-  - Secure API Access
-  - Token Generation & Management
-  - Role-based Access Control
-
-- **API Endpoints**
-  - RESTful API Design
-  - Versioned API (v1)
-  - Protected Resources
-  - Comprehensive Documentation
+- **Backend Framework**: Django 5.0+
+- **API Framework**: Django REST Framework
+- **Database**: PostgreSQL/SQLite
+- **Cache & Queue**: Redis
+- **Task Processing**: Celery
+- **Data Processing**: Pandas, NumPy
+- **Financial Data**: yfinance, alpha_vantage, openbb-sdk
+- **Testing**: pytest, coverage
 
 ## Installation
 
-1. Create a virtual environment:
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/dataconcierge.git
+cd dataconcierge
+```
+
+2. Create and activate virtual environment:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Set up environment variables:
+4. Set up environment variables:
 ```bash
 cp .env.example .env
 # Edit .env with your configuration
 ```
 
-4. Run database migrations:
+5. Run migrations:
 ```bash
 python manage.py migrate
 ```
 
-5. Create a superuser for admin access:
+6. Start the development server:
 ```bash
-python manage.py createsuperuser
-```
-
-## Configuration
-
-### Required Environment Variables
-- `DJANGO_SETTINGS_MODULE`: Django settings module path
-- `OPENAI_API_KEY`: OpenAI API key for AI features
-- `DATABASE_URL`: Database connection string
-- `REDIS_URL`: Redis connection string for Celery
-- `API_KEY`: Default API key for data collection
-- `SECRET_KEY`: Django secret key for security
-
-### Optional Settings
-- `RATE_LIMIT`: API rate limit (requests per minute)
-- `MAX_WORKERS`: Maximum number of concurrent workers
-- `DATA_STORAGE_PATH`: Path for storing collected datasets
-- `TOKEN_EXPIRY_DAYS`: Authentication token expiry in days
-
-## Usage
-
-### 1. Start the Services
-```bash
-# Start Redis
-redis-server
-
-# Start Celery Worker
-celery -A dataconcierge worker -l info
-
-# Start Django Development Server
 python manage.py runserver
 ```
 
-### 2. Authentication
-1. **Get Authentication Token**
-```bash
-# Generate token with username and password
-curl -X POST http://localhost:8000/api-auth/token/ \
-  -H "Content-Type: application/json" \
-  -d '{"username": "your_username", "password": "your_password"}'
+## API Documentation
+
+### Authentication
+```http
+POST /api/token/
+Content-Type: application/json
+
+{
+    "username": "your_username",
+    "password": "your_password"
+}
 ```
 
-2. **Access API with Token**
-```bash
-# Include token in request header
-curl http://localhost:8000/api/v1/ \
-  -H "Authorization: Token your_token_here"
+### Market Data
+```http
+GET /api/financial/market_data/?symbol=AAPL&interval=1d
+Authorization: Token your_token
 ```
 
-### 3. API Endpoints
-
-#### Core API
-- `GET /api/v1/`: API root endpoint (requires authentication)
-- `GET /api/v1/restricted/`: Restricted resource endpoint (requires authentication)
-- `GET /api/projects/`: Project list
-- `GET /api/datasets/`: Dataset list
-- `GET /api/tasks/`: Task list
-
-#### Authentication Endpoints
-- `POST /api-auth/token/`: Generate authentication token
-- `POST /api-auth/token/refresh/`: Refresh authentication token
-- `POST /api-auth/token/verify/`: Verify token validity
-
-### 4. Run Tests
-```bash
-python run_tests.py
+### Technical Indicators
+```http
+GET /api/financial/technical_indicators/?symbol=AAPL&indicator=RSI&period=14
+Authorization: Token your_token
 ```
 
-### 5. API Documentation
-The API documentation is available at `/api/docs/` when the server is running.
+### Fundamental Data
+```http
+GET /api/financial/fundamental_data/?symbol=AAPL&data_type=financials
+Authorization: Token your_token
+```
 
 ## Testing
 
-### Test Categories
-1. **Unit Tests**
-   - Data Collection Tests
-   - Data Quality Tests
-   - AI Enhancement Tests
-
-2. **Integration Tests**
-   - End-to-End Flow Tests
-   - API Integration Tests
-   - Database Integration Tests
-   - Authentication Tests
-
-3. **Performance Tests**
-   - Load Testing
-   - Stress Testing
-   - Rate Limit Testing
-
-### Running Tests
+Run the test suite:
 ```bash
-# Run all tests
 python run_tests.py
+```
 
-# Run specific test category
-python run_tests.py -k test_data_quality
-
-# Generate coverage report
-python run_tests.py --coverage
+Generate coverage report:
+```bash
+coverage run -m pytest
+coverage report
+coverage html
 ```
 
 ## Project Structure
+
 ```
 dataconcierge/
-├── dc_core/                 # Core functionality
-│   ├── models.py           # Data models
-│   ├── services/           # Core services
-│   │   ├── quality_manager.py
-│   │   └── ai_enhancer.py
-│   └── storage.py          # Data storage
-├── dc_collector/           # Data collection
-│   └── services/
-│       └── enhanced_collector.py
-├── tests/                  # Test suite
-│   ├── test_core_features.py
-│   ├── test_workflow.py
-│   └── test_endpoints.py   # API endpoint tests
-└── manage.py              # Django management
+├── config/                 # Project configuration
+├── dc_core/               # Core functionality
+├── dc_collector/          # Data collection services
+├── dc_validation/         # Data validation services
+├── dc_analysis/          # Data analysis services
+├── tests/                # Test suite
+└── requirements.txt      # Project dependencies
 ```
-
-## Security Considerations
-
-1. **API Security**
-   - Token-based Authentication
-   - HTTPS Only in Production
-   - Rate Limiting
-   - Input Validation
-
-2. **Data Security**
-   - Encrypted Storage
-   - Access Control
-   - Audit Logging
-   - Regular Backups
-
-3. **Best Practices**
-   - Regular Security Updates
-   - Secure Password Storage
-   - Session Management
-   - CORS Configuration
 
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests
-5. Submit a pull request
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For support, please open an issue in the GitHub repository or contact the development team. 

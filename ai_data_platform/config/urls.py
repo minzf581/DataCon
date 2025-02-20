@@ -19,16 +19,14 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views as auth_views
 from dc_core.views import RestrictedViewSet, RootAPIView
+from dc_core.api.financial_data import FinancialDataViewSet
 
 router = DefaultRouter()
-router.register(r'restricted', RestrictedViewSet, basename='restricted')
+router.register(r'financial', FinancialDataViewSet, basename='financial')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', auth_views.obtain_auth_token),
-    path('api/v1', RootAPIView.as_view(), name='api-root'),
-    path('api/v1/', RootAPIView.as_view(), name='api-root-slash'),
-    path('api/v1/restricted', RestrictedViewSet.as_view({'get': 'list', 'post': 'create'}), name='restricted'),
-    path('api/v1/restricted/', RestrictedViewSet.as_view({'get': 'list', 'post': 'create'}), name='restricted-slash'),
 ]
